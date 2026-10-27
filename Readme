@@ -1,0 +1,170 @@
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<div id="n8n-chat-mount"></div>
+
+<script type="module">
+  const WEBHOOK = 'https://phanphuc.app.n8n.cloud/webhook/6e2b9f1f-f157-4b20-8026-4a6bf0f47146/chat';
+  const TAG = '[N8N-CHAT-LOCK]';
+  let isBusy = false;
+  let lastBotCount = 0; // số tin bot trước khi gửi
+
+  // ---- helpers DOM ----
+  const qs  = (sel, root=document) => root.querySelector(sel);
+  const qsa = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+  const footer = () => qs('.chat-footer');
+  const messagesList = () => qs('.chat-messages-list');
+
+  function ensureOverlay() {
+    const f = footer();
+    if (!f) return null;
+    f.classList.add('chat-footer-wrap');
+    let ov = qs('.chat-busy-overlay', f);
+    if (!ov) {
+      ov = document.createElement('div');
+      ov.className = 'chat-busy-overlay';
+      f.appendChild(ov);
+      console.log(TAG, 'overlay attached');
+    }
+    return ov;
+  }
+
+  function setFooterBusy(on, reason='') {
+    isBusy = !!on;
+    const f = footer();
+    if (!f) { console.warn(TAG, 'footer not found', { on, reason }); return; }
+    const ov = ensureOverlay();
+    f.classList.toggle('is-busy', on);
+    // disable inputs
+    qsa('input, textarea, button', f).forEach(el => el.disabled = on);
+    // overlay eats pointer events
+    if (ov) ov.style.pointerEvents = on ? 'auto' : 'none';
+    console.log(TAG, on ? 'LOCK' : 'UNLOCK', reason);
+  }
+
+  // ---- chặn Enter/click khi đang busy ----
+  function attachGuards() {
+    const f = footer();
+    if (!f) return;
+    // chặn submit/click nút gửi
+    f.addEventListener('click', (e) => {
+      if (isBusy && (e.target.closest('button') || e.target.closest('form'))) {
+        console.log(TAG, 'blocked click while busy');
+        e.stopPropagation(); e.preventDefault();
+      }
+    }, true);
+    // chặn Enter trong textarea khi busy
+    f.addEventListener('keydown', (e) => {
+      if (!isBusy) return;
+      const isEnter = (e.key === 'Enter' && !e.shiftKey);
+      if (isEnter) {
+        console.log(TAG, 'blocked Enter while busy');
+        e.stopPropagation(); e.preventDefault();
+      }
+    }, true);
+  }
+
+  // ---- quan sát khi render xong widget ----
+  const bootMO = new MutationObserver(() => {
+    const f = footer();
+    if (f) {
+      ensureOverlay();
+      attachGuards();
+      console.log(TAG, 'footer detected & guards attached');
+      bootMO.disconnect();
+    }
+  });
+  bootMO.observe(document.documentElement, { childList: true, subtree: true });
+
+  // ---- MutationObserver: mở khóa khi có tin bot mới ----
+  function watchBotReplies() {
+    const list = messagesList();
+    if (!list) return console.warn(TAG, 'messages list not found');
+    // initialize bot count
+    lastBotCount = qsa('.chat-message-from-bot', list).length;
+
+    const mo = new MutationObserver(() => {
+      const count = qsa('.chat-message-from-bot', list).length;
+if (isBusy && count > lastBotCount) {
+        console.log(TAG, 'bot message detected (+1)');
+        lastBotCount = count;
+        setFooterBusy(false, 'bot-replied');
+      }
+    });
+    mo.observe(list, { childList: true, subtree: true });
+    console.log(TAG, 'watching bot replies; init bot count =', lastBotCount);
+  }
+
+  // ---- patch fetch: LOCK khi thấy sendMessage ----
+  const origFetch = window.fetch.bind(window);
+  window.fetch = async (input, init = {}) => {
+    const url = typeof input === 'string' ? input : (input && input.url) || '';
+    const method = (init && init.method) || (typeof input === 'object' && input.method) || 'GET';
+    const isChat = url.includes(WEBHOOK);
+
+    // cố gắng phát hiện payload sendMessage
+    let isSend = false;
+    try {
+      const body = init && init.body ? String(init.body) : '';
+      isSend = isChat && /"action"\s*:\s*"sendMessage"/.test(body);
+    } catch {}
+
+    if (isSend) {
+      // snapshot số tin bot hiện có, LOCK
+      const list = messagesList();
+      if (list) lastBotCount = qsa('.chat-message-from-bot', list).length;
+      setFooterBusy(true, 'sendMessage');
+      console.log(TAG, 'sendMessage -> botCount snapshot', lastBotCount);
+    }
+
+    const res = await origFetch(input, init);
+    // KHÔNG UNLOCK ở đây; chỉ unlock khi thấy bot reply qua MutationObserver
+    console.log(TAG, 'FETCH', method, res.status, url);
+    return res;
+  };
+
+  // ---- khởi tạo widget rồi bắt đầu theo dõi ----
+  console.log(TAG, 'init widget…');
+  const { createChat } = await import('https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js');
+
+
+createChat({
+  webhookUrl: WEBHOOK, 
+  target: '#n8n-chat-mount', 
+  initialMessages: [
+            'À nhon! 👋',
+            'Mình là Phúc Hoàng. Mình có thể hỗ trợ gì cho bạn hôm nay?'
+                             ],
+ i18n: { 
+        en: {
+            title: 'Ní Hảo! 👋', 
+            subtitle: 'Mình luôn sẵn sàng hỗ trợ bạn.', footer: '', 
+            getStarted: 'Bắt đầu cuộc trò chuyện',
+            inputPlaceholder: 'Nhập câu hỏi của bạn...' } } }); 
+
+  // đợi một nhịp rồi gắn watcher bot
+  const poll = setInterval(() => {
+    if (messagesList()) {
+      clearInterval(poll);
+      watchBotReplies();
+    }
+  }, 200);
+</script>
+
+<style>
+:root { /* MÀU THƯƠNG HIỆU YẾN PHÁT */ --chat--color-primary: #6FA80C; --chat--color-primary-shade-50: #63960B; --chat--color-primary-shade-100: #568509; --chat--color-secondary: #6FA80C; --chat--color-secondary-shade-50: #63960B; /* Màu header */ --chat--header--background: #6FA80C; --chat--header--color: #ffffff; /* Tin nhắn AI */ --chat--message--bot--background: #ffffff; --chat--message--bot--color: #222222; /* Tin nhắn khách */ --chat--message--user--background: #6FA80C; --chat--message--user--color: #ffffff; /* Nền */ --chat--body--background: #f5f7f2; /* Nút mở chatbot */ --chat--toggle--background: #6FA80C; --chat--toggle--hover--background: #63960B; --chat--toggle--active--background: #568509; --chat--toggle--color: #ffffff; } 
+.chat-footer-wrap { position: relative; }
+.chat-busy-overlay {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background: transparent;
+  z-index: 5;
+}
+.chat-footer.is-busy, .chat-footer.is-busy * { cursor: progress !important; }
+.chat-footer.is-busy { opacity: .9; }
+
+/* tuỳ chọn: chữ trạng thái */
+.chat-footer.is-busy .chat-busy-overlay::after {
+  content: 'Đang nghĩ…';
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  font-size: 12px; opacity: .7;
+}
+</style>

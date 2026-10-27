@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yến Phát Bao Bì – Giải Pháp Bao Bì Chất Lượng Cao</title>
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+  <meta name="description" content="Yến Phát Bao Bì cung cấp các loại bao bì cao cấp: hộp giấy, túi giấy, bao bì thực phẩm, in ấn theo yêu cầu. Giao hàng toàn quốc, giá tốt nhất.">
+  <meta name="keywords" content="bao bì, hộp giấy, túi giấy, bao bì thực phẩm, in ấn bao bì, bao bì cao cấp">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" id="logo-link">
+        <div class="nav-logo-icon">📦</div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Yến Phát</span>
+          <span class="nav-logo-sub">Bao Bì</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#products" id="nav-products">Sản phẩm</a></li>
+        <li><a href="#features" id="nav-features">Ưu điểm</a></li>
+        <li><a href="#why-us" id="nav-whyus">Về chúng tôi</a></li>
+        <li><a href="#contact" id="nav-contact">Liên hệ</a></li>
+      </ul>
+      <button class="btn-primary" id="nav-cta-btn" onclick="document.getElementById('chat-toggle-btn').click()">
+        💬 Tư vấn ngay
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Đối tác tin cậy từ 2010
+          </div>
+          <h1 class="hero-title">
+            Giải Pháp Bao Bì<br>
+            <span class="highlight">Chuyên Nghiệp &</span><br>
+            Bền Vững
+          </h1>
+          <p class="hero-desc">
+            Chúng tôi cung cấp đa dạng các loại bao bì chất lượng cao – từ hộp giấy, túi giấy đến bao bì thực phẩm. In ấn theo yêu cầu, giao hàng nhanh, giá cạnh tranh nhất thị trường.
+          </p>
+          <div class="hero-cta">
+            <button class="btn-primary" id="hero-cta-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+              📋 Yêu cầu báo giá
+            </button>
+            <button class="btn-outline" id="hero-browse-btn" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+              🛒 Xem sản phẩm
+            </button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-num">500+</span>
+              <span class="stat-label">Khách hàng</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">15+</span>
+              <span class="stat-label">Năm kinh nghiệm</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">2M+</span>
+              <span class="stat-label">Sản phẩm/tháng</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image-wrap">
+          <img src="hero.png" alt="Bộ sưu tập bao bì Yến Phát" class="hero-img" id="hero-img">
+          <div class="hero-float-card card-1">
+            <div class="float-icon">⭐</div>
+            <div class="float-text">
+              <span class="float-num">4.9/5.0</span>
+              <span class="float-desc">Đánh giá khách hàng</span>
+            </div>
+          </div>
+          <div class="hero-float-card card-2">
+            <div class="float-icon">🚚</div>
+            <div class="float-text">
+              <span class="float-num">Giao 2H</span>
+              <span class="float-desc">Nội thành TP.HCM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES SECTION ===== -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag">✨ Ưu điểm</div>
+        <h2 class="section-title">Tại sao chọn Yến Phát?</h2>
+        <p class="section-sub">Chúng tôi cam kết mang lại trải nghiệm tốt nhất với chất lượng sản phẩm và dịch vụ hàng đầu.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card" id="feature-quality">
+          <div class="feature-icon">🏆</div>
+          <h3 class="feature-title">Chất lượng cao cấp</h3>
+          <p class="feature-desc">Nguyên liệu được chọn lọc kỹ càng từ các nhà cung cấp uy tín, đảm bảo bao bì bền đẹp, an toàn cho sản phẩm và môi trường.</p>
+        </div>
+        <div class="feature-card" id="feature-custom">
+          <div class="feature-icon">🎨</div>
+          <h3 class="feature-title">In ấn theo yêu cầu</h3>
+          <p class="feature-desc">Hỗ trợ thiết kế và in ấn logo, thương hiệu theo yêu cầu riêng với đa dạng màu sắc, kích thước và chất liệu.</p>
+        </div>
+        <div class="feature-card" id="feature-price">
+          <div class="feature-icon">💰</div>
+          <h3 class="feature-title">Giá cạnh tranh</h3>
+          <p class="feature-desc">Sản xuất trực tiếp, không qua trung gian giúp tối ưu chi phí. Chiết khấu hấp dẫn cho đơn hàng số lượng lớn.</p>
+        </div>
+        <div class="feature-card" id="feature-delivery">
+          <div class="feature-icon">🚀</div>
+          <h3 class="feature-title">Giao hàng nhanh</h3>
+          <p class="feature-desc">Giao trong ngày với đơn nội thành TP.HCM. Vận chuyển toàn quốc trong 1-3 ngày làm việc với đối tác logistics uy tín.</p>
+        </div>
+        <div class="feature-card" id="feature-eco">
+          <div class="feature-icon">🌿</div>
+          <h3 class="feature-title">Thân thiện môi trường</h3>
+          <p class="feature-desc">Dòng sản phẩm eco-friendly từ giấy tái chế, vật liệu phân hủy sinh học, giúp thương hiệu của bạn trở nên xanh hơn.</p>
+        </div>
+        <div class="feature-card" id="feature-support">
+          <div class="feature-icon">🎯</div>
+          <h3 class="feature-title">Hỗ trợ tận tâm</h3>
+          <p class="feature-desc">Đội ngũ tư vấn chuyên nghiệp hỗ trợ 7 ngày/tuần. Chatbot AI sẵn sàng trả lời mọi câu hỏi 24/7.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUCTS SECTION ===== -->
+  <section class="products" id="products">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag">📦 Sản phẩm</div>
+        <h2 class="section-title">Bộ sưu tập bao bì</h2>
+        <p class="section-sub">Đa dạng mẫu mã, kích thước và chất liệu để đáp ứng mọi nhu cầu của doanh nghiệp bạn.</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card" id="product-giftbox">
+          <div class="product-img-wrap">
+            <img src="product-box.png" alt="Hộp quà kraft cao cấp" loading="lazy">
+            <span class="product-badge">🔥 Bán chạy</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Hộp quà Kraft cao cấp</h3>
+            <p class="product-desc">Hộp giấy kraft tự nhiên, sang trọng. Phù hợp đóng gói quà tặng, mỹ phẩm, thực phẩm cao cấp. Có nắp đậy chắc chắn.</p>
+            <div class="product-footer">
+              <div class="product-price">
+                1.500đ <span>/ cái (SL &ge; 500)</span>
+              </div>
+              <button class="btn-sm" id="quote-giftbox" onclick="document.getElementById('chat-toggle-btn').click()">Báo giá</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" id="product-paperbag">
+          <div class="product-img-wrap">
+            <img src="product-bag.png" alt="Túi giấy mua sắm" loading="lazy">
+            <span class="product-badge">🌿 Eco-friendly</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Túi giấy mua sắm</h3>
+            <p class="product-desc">Túi giấy kraft / couche cao cấp, in màu sắc nét. Quai xách dây cotton chắc chắn. Đa dạng kích thước S/M/L/XL.</p>
+            <div class="product-footer">
+              <div class="product-price">
+                2.200đ <span>/ cái (SL &ge; 300)</span>
+              </div>
+              <button class="btn-sm" id="quote-paperbag" onclick="document.getElementById('chat-toggle-btn').click()">Báo giá</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" id="product-foodbox">
+          <div class="product-img-wrap">
+            <img src="product-food.png" alt="Hộp thực phẩm take-away" loading="lazy">
+            <span class="product-badge">✅ An toàn thực phẩm</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Hộp thực phẩm take-away</h3>
+            <p class="product-desc">Hộp giấy đựng thức ăn đạt chuẩn an toàn thực phẩm, chống thấm dầu. Phù hợp nhà hàng, quán cafe, bánh.</p>
+            <div class="product-footer">
+              <div class="product-price">
+                800đ <span>/ cái (SL &ge; 1000)</span>
+              </div>
+              <button class="btn-sm" id="quote-foodbox" onclick="document.getElementById('chat-toggle-btn').click()">Báo giá</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY US SECTION ===== -->
+  <section class="why-us" id="why-us">
+    <div class="container">
+      <div class="why-inner">
+        <div class="why-left">
+          <div class="tag" style="background:rgba(255,255,255,0.15); color:white; border-color:rgba(255,255,255,0.25);">🏭 Về chúng tôi</div>
+          <h2 class="section-title">Nhà máy sản xuất<br>trực tiếp</h2>
+          <p class="section-sub">Với hơn 15 năm kinh nghiệm, Yến Phát tự hào là đơn vị sản xuất bao bì hàng đầu khu vực miền Nam.</p>
+          <div class="why-list">
+            <div class="why-item">
+              <div class="why-icon">🏗️</div>
+              <div class="why-text">
+                <h4>Dây chuyền hiện đại</h4>
+                <p>Máy móc nhập khẩu từ châu Âu, đảm bảo chất lượng đồng đều và sản lượng lớn.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon">🔬</div>
+              <div class="why-text">
+                <h4>Kiểm tra chất lượng nghiêm ngặt</h4>
+                <p>100% sản phẩm qua kiểm định trước khi xuất xưởng. Cam kết đổi trả nếu lỗi sản xuất.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon">📐</div>
+              <div class="why-text">
+                <h4>Thiết kế miễn phí</h4>
+                <p>Đội ngũ designer chuyên nghiệp hỗ trợ thiết kế bao bì theo thương hiệu của bạn.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="why-right">
+          <div class="why-stats-row">
+            <div class="why-stat-card">
+              <div class="why-stat-num">15+</div>
+              <div class="why-stat-label">Năm kinh nghiệm</div>
+            </div>
+            <div class="why-stat-card">
+              <div class="why-stat-num">500+</div>
+              <div class="why-stat-label">Khách hàng tin dùng</div>
+            </div>
+          </div>
+          <div class="why-stat-card">
+            <div class="why-stat-num">2,000,000+</div>
+            <div class="why-stat-label">Sản phẩm sản xuất mỗi tháng</div>
+          </div>
+          <div class="why-stat-card">
+            <div class="why-stat-num">99.5%</div>
+            <div class="why-stat-label">Tỷ lệ khách hàng hài lòng</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="tag">📬 Liên hệ</div>
+        <h2 class="section-title">Nhận báo giá miễn phí</h2>
+        <p class="section-sub">Điền thông tin và nhận báo giá trong vòng 30 phút làm việc. Hoặc chat trực tiếp với trợ lý AI ngay bây giờ!</p>
+      </div>
+      <div class="contact-inner">
+        <div class="contact-left">
+          <div class="contact-info">
+            <div class="contact-item" id="contact-phone">
+              <div class="contact-icon">📞</div>
+              <div class="contact-text">
+                <h4>Điện thoại</h4>
+                <p>0909 123 456</p>
+              </div>
+            </div>
+            <div class="contact-item" id="contact-email">
+              <div class="contact-icon">✉️</div>
+              <div class="contact-text">
+                <h4>Email</h4>
+                <p>yenphat.baobì@gmail.com</p>
+              </div>
+            </div>
+            <div class="contact-item" id="contact-address">
+              <div class="contact-icon">📍</div>
+              <div class="contact-text">
+                <h4>Địa chỉ</h4>
+                <p>123 Đường Số 5, KCN Bình Dương, Bình Dương</p>
+              </div>
+            </div>
+            <div class="contact-item" id="contact-hours">
+              <div class="contact-icon">🕐</div>
+              <div class="contact-text">
+                <h4>Giờ làm việc</h4>
+                <p>Thứ 2 – Thứ 7: 7:30 – 17:30</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form" id="quote-form">
+          <h3>📋 Yêu cầu báo giá</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="form-name">Họ và tên *</label>
+              <input type="text" id="form-name" placeholder="Nguyễn Văn A" required>
+            </div>
+            <div class="form-group">
+              <label for="form-phone">Số điện thoại *</label>
+              <input type="tel" id="form-phone" placeholder="0909 xxx xxx" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="form-product">Sản phẩm quan tâm</label>
+            <select id="form-product">
+              <option value="">-- Chọn loại bao bì --</option>
+              <option value="hop-qua">Hộp quà Kraft cao cấp</option>
+              <option value="tui-giay">Túi giấy mua sắm</option>
+              <option value="hop-thuc-pham">Hộp thực phẩm take-away</option>
+              <option value="bao-bi-khac">Loại khác / Tùy chỉnh</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="form-quantity">Số lượng cần đặt</label>
+            <input type="text" id="form-quantity" placeholder="VD: 1.000 cái, 500 hộp...">
+          </div>
+          <div class="form-group">
+            <label for="form-note">Ghi chú thêm</label>
+            <textarea id="form-note" placeholder="Kích thước, màu sắc, yêu cầu in ấn..."></textarea>
+          </div>
+          <button class="btn-primary btn-full" id="submit-form-btn" onclick="submitForm(event)">
+            🚀 Gửi yêu cầu báo giá
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-icon">📦</div>
+            <span class="footer-logo-name">Yến Phát Bao Bì</span>
+          </div>
+          <p>Nhà cung cấp bao bì chất lượng cao hàng đầu miền Nam. Cam kết mang lại giải pháp bao bì tốt nhất cho doanh nghiệp của bạn.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Sản phẩm</h4>
+          <ul>
+            <li><a href="#products" id="footer-giftbox">Hộp quà Kraft</a></li>
+            <li><a href="#products" id="footer-paperbag">Túi giấy</a></li>
+            <li><a href="#products" id="footer-foodbox">Hộp thực phẩm</a></li>
+            <li><a href="#products" id="footer-custom">Bao bì tùy chỉnh</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Dịch vụ</h4>
+          <ul>
+            <li><a href="#contact" id="footer-design">Thiết kế miễn phí</a></li>
+            <li><a href="#contact" id="footer-print">In ấn theo yêu cầu</a></li>
+            <li><a href="#contact" id="footer-delivery">Giao hàng nhanh</a></li>
+            <li><a href="#contact" id="footer-sample">Mẫu thử miễn phí</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Hỗ trợ</h4>
+          <ul>
+            <li><a href="tel:0909123456" id="footer-phone">0909 123 456</a></li>
+            <li><a href="#" id="footer-chat" onclick="document.getElementById('chat-toggle-btn').click();return false;">Chat AI 24/7</a></li>
+            <li><a href="#contact" id="footer-quote">Yêu cầu báo giá</a></li>
+            <li><a href="#why-us" id="footer-about">Về chúng tôi</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Yến Phát Bao Bì. Tất cả quyền được bảo lưu.</p>
+        <p>🌿 Cam kết vì môi trường bền vững</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCROLL TOP BUTTON ===== -->
+  <button id="scroll-top" title="Lên đầu trang">⬆️</button>
+
+  <!-- ===== N8N CHATBOT WIDGET (Official @n8n/chat) ===== -->
+  <div id="n8n-chat-mount"></div>
+
+  <script>
+    // Simple form submit handler
+    function submitForm(e) {
+      e.preventDefault();
+      const name = document.getElementById('form-name').value.trim();
+      const phone = document.getElementById('form-phone').value.trim();
+      if (!name || !phone) {
+        alert('Vui lòng nhập Họ tên và Số điện thoại!');
+        return;
+      }
+      const btn = document.getElementById('submit-form-btn');
+      btn.textContent = '✅ Đã gửi yêu cầu!';
+      btn.style.background = 'linear-gradient(135deg, #1B5E20, #2E7D32)';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = '🚀 Gửi yêu cầu báo giá';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    }
+  </script>
+
+  <script type="module">
+    const WEBHOOK = 'https://phanphuc.app.n8n.cloud/webhook/6e2b9f1f-f157-4b20-8026-4a6bf0f47146/chat';
+    const TAG = '[N8N-CHAT-LOCK]';
+    let isBusy = false;
+    let lastBotCount = 0;
+
+    const qs  = (sel, root=document) => root.querySelector(sel);
+    const qsa = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+    const footer = () => qs('.chat-footer');
+    const messagesList = () => qs('.chat-messages-list');
+
+    function ensureOverlay() {
+      const f = footer();
+      if (!f) return null;
+      f.classList.add('chat-footer-wrap');
+      let ov = qs('.chat-busy-overlay', f);
+      if (!ov) {
+        ov = document.createElement('div');
+        ov.className = 'chat-busy-overlay';
+        f.appendChild(ov);
+      }
+      return ov;
+    }
+
+    function setFooterBusy(on, reason='') {
+      isBusy = !!on;
+      const f = footer();
+      if (!f) return;
+      const ov = ensureOverlay();
+      f.classList.toggle('is-busy', on);
+      qsa('input, textarea, button', f).forEach(el => el.disabled = on);
+      if (ov) ov.style.pointerEvents = on ? 'auto' : 'none';
+    }
+
+    function attachGuards() {
+      const f = footer();
+      if (!f) return;
+      f.addEventListener('click', (e) => {
+        if (isBusy && (e.target.closest('button') || e.target.closest('form'))) {
+          e.stopPropagation(); e.preventDefault();
+        }
+      }, true);
+      f.addEventListener('keydown', (e) => {
+        if (!isBusy) return;
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.stopPropagation(); e.preventDefault();
+        }
+      }, true);
+    }
+
+    const bootMO = new MutationObserver(() => {
+      const f = footer();
+      if (f) { ensureOverlay(); attachGuards(); bootMO.disconnect(); }
+    });
+    bootMO.observe(document.documentElement, { childList: true, subtree: true });
+
+    function watchBotReplies() {
+      const list = messagesList();
+      if (!list) return;
+      lastBotCount = qsa('.chat-message-from-bot', list).length;
+      const mo = new MutationObserver(() => {
+        const count = qsa('.chat-message-from-bot', list).length;
+        if (isBusy && count > lastBotCount) {
+          lastBotCount = count;
+          setFooterBusy(false, 'bot-replied');
+        }
+      });
+      mo.observe(list, { childList: true, subtree: true });
+    }
+
+    const origFetch = window.fetch.bind(window);
+    window.fetch = async (input, init = {}) => {
+      const url = typeof input === 'string' ? input : (input && input.url) || '';
+      let isSend = false;
+      try {
+        const body = init && init.body ? String(init.body) : '';
+        isSend = url.includes(WEBHOOK) && /"action"\s*:\s*"sendMessage"/.test(body);
+      } catch {}
+      if (isSend) {
+        const list = messagesList();
+        if (list) lastBotCount = qsa('.chat-message-from-bot', list).length;
+        setFooterBusy(true, 'sendMessage');
+      }
+      const res = await origFetch(input, init);
+      return res;
+    };
+
+    const { createChat } = await import('https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js');
+
+    createChat({
+      webhookUrl: WEBHOOK,
+      target: '#n8n-chat-mount',
+      initialMessages: [
+        'Xin chào! 👋',
+        'Tôi là trợ lý tư vấn bao bì của Yến Phát. Tôi có thể hỗ trợ gì cho bạn?'
+      ],
+      i18n: {
+        en: {
+          title: 'Trợ lý Yến Phát 📦',
+          subtitle: 'Luôn sẵn sàng hỗ trợ bạn 24/7',
+          footer: '',
+          getStarted: 'Bắt đầu cuộc trò chuyện',
+          inputPlaceholder: 'Nhập câu hỏi của bạn...'
+        }
+      }
+    });
+
+    const poll = setInterval(() => {
+      if (messagesList()) { clearInterval(poll); watchBotReplies(); }
+    }, 200);
+  </script>
+</body>
+</html>
